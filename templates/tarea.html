@@ -1,0 +1,87 @@
+{% extends 'base.html' %} 
+
+{% block title %}Tareas{% endblock %} 
+
+{% block content%}
+<div class="mb-4">
+  <a href="{% url 'recordatorio' %}" class="btn btn-info me-2">Ir a Recordatorios</a>
+  <a href="{% url 'lista_de_tareas' %}" class="btn btn-info">Ir a Lista de Tareas</a>
+</div>
+
+<h1 class="mb-4">Crear Nueva Tarea</h1>
+<form method="POST" action="">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nombre"
+      name="nombre"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="descripcion" class="form-label">Descripción</label>
+    <textarea
+      class="form-control"
+      id="descripcion"
+      name="descripcion"
+      rows="3"
+      required
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="fecha_vencimiento" class="form-label"
+      >Fecha de Vencimiento</label>
+    <input
+      type="date"
+      class="form-control"
+      id="fecha_vencimiento"
+      name="fecha_vencimiento"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Crear Tarea</button>
+</form>
+
+<hr class="my-5" />
+
+<h2 class="mb-4">Tareas Existentes</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Fecha de Vencimiento</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tarea in tareas %}
+    <tr>
+      <td>{{ tarea.nombre }}</td>
+      <td>{{ tarea.descripcion }}</td>
+      <td>{{ tarea.fecha_vencimiento }}</td>
+      <td>
+        <form method="POST" action="" style="display: inline">
+          {% csrf_token %}
+          <input type="hidden" name="delete_tarea_id" value="{{ tarea.id }}" />
+          <button
+            type="submit"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('¿Seguro que deseas eliminar esta tarea?');"
+          >
+            Eliminar
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" class="text-center">No hay tareas creadas.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

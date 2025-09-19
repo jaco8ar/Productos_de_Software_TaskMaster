@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Tasks</title>
+    <style>
+      body {
+        background: #e3f2fd;
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .userpad-container {
+        background: #ffffff;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        margin-top: 40px;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+      }
+      h1 {
+        font-size: 2rem;
+        color: #1976d2;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .tasks-list {
+        margin-bottom: 24px;
+      }
+      .task {
+        background: #e3f2fd;
+        border-left: 4px solid #1976d2;
+        margin-bottom: 12px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 1rem;
+        color: #0d47a1;
+      }
+      textarea {
+        width: 100%;
+        min-height: 80px;
+        border: 1px solid #90caf9;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 1rem;
+        background: #e3f2fd;
+        resize: vertical;
+        margin-bottom: 16px;
+      }
+      button {
+        background: #1976d2;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 24px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #1565c0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="userpad-container">
+      <h1>User Page</h1>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin: 32px 0;
+          align-items: center;
+        "
+      >
+        <a href="/tareas/"><button type="button">Tareas</button></a>
+        <a href="/objetivos/"><button type="button">Objetivos</button></a>
+        <a href="/reporte/"><button type="button">Reporte</button></a>
+        <a href="/notificaciones/"
+          ><button type="button">Notificaciones</button></a
+        >
+      </div>
+    </div>
+    <script>
+      const form = document.getElementById("task-form");
+      const input = document.getElementById("task-input");
+      const tasksList = document.getElementById("tasks-list");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (text) {
+          const taskDiv = document.createElement("div");
+          taskDiv.className = "task";
+          taskDiv.textContent = text;
+          tasksList.prepend(taskDiv);
+          input.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

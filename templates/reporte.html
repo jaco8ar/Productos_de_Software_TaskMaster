@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Reporte{% endblock %}
+
+{% block content %}
+  <h1>Reporte</h1>
+  <form method="post" action="" class="mb-4">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary" disabled>Generar Reporte</button>
+  </form>
+  <div class="card">
+    <div class="card-header">
+      {{ today|default:"19-09-2025" }}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Reporte Semanal</h5>
+      <p class="card-text">12 tareas completadas esta semana</p>
+    </div>
+  </div>
+{% endblock %}

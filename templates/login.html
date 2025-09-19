@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      body {
+        background: #f7f6f2;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .form-container {
+        background: #fffbe6;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 32px 24px;
+      }
+      h2 {
+        color: #6d4c41;
+        text-align: center;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      input {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ffe082;
+        font-size: 1rem;
+      }
+      button {
+        background: #ffd54f;
+        color: #4e342e;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 24px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #ffe082;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
