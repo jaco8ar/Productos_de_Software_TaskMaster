@@ -1,0 +1,29 @@
+@startuml "Modelo de Dominio - TaskMaster"
+' ========================
+' Modelo de Dominio - TaskMaster
+' ========================
+
+class Usuario
+class Administrador
+class Tarea
+class ListaTareas
+class Recordatorio
+class Reporte
+class Objetivo
+
+' ========================
+' Relaciones
+' ========================
+
+Usuario -- ListaTareas
+ListaTareas -- Tarea
+Tarea -- Reporte
+Tarea -- Recordatorio
+Usuario -- Tarea
+Usuario -- Reporte
+Usuario -- Objetivo
+
+' Herencia
+Administrador --|> Usuario
+
+@enduml
